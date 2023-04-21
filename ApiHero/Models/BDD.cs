@@ -12,13 +12,13 @@ namespace Animal.Models
 {
     public class BDD: Hero
     {
-        public BDD(string name, string power) : base(name, power)
+        public BDD()
         { }
 
-        public void ConnectionDataBase()
+        public void OpenConnectionDataBase()
         {
             SqlConnection connection = new SqlConnection("Data Source=localhost\\SQLEXPRESS;Initial Catalog=Hero;Integrated Security=True;");
-            SqlCommand cmd = new SqlCommand();
+            //SqlCommand cmd = new SqlCommand();
             try
             {
                 connection.Open();
@@ -26,15 +26,15 @@ namespace Animal.Models
 
                 Console.WriteLine("Etat : " + connection.State);
 
-                string insert = $"INSERT INTO TableHero (name, power) VALUES ('{Name}', '{Power}')";
+                /*string insert = $"INSERT INTO TableHero (name, power) VALUES ('{Name}', '{Power}')";
                 SqlCommand insertCommand = new SqlCommand(insert, connection);
                 insertCommand.ExecuteNonQuery();
 
                 string select = "SELECT * FROM TableHero";
                 SqlCommand selectCommand = new SqlCommand(select, connection);
-                SqlDataReader reader = selectCommand.ExecuteReader();
+                SqlDataReader reader = selectCommand.ExecuteReader();*/
 
-                while (reader.Read())
+                /*while (reader.Read())
                 {
                     Console.WriteLine(reader["Name"] + " " + reader["Power"]);
                 }
@@ -44,14 +44,31 @@ namespace Animal.Models
 
                 reader.Close();
                 connection.Close();
-                Console.WriteLine("Etat : " + connection.State);
+                Console.WriteLine("Etat : " + connection.State);*/
             }
             catch (Exception ex)
             {
                 Console.WriteLine("Erreur lors de la connexion à la base de données : " + ex.Message);
+                connection.Close();
+                Console.WriteLine("Connexion fermée.");
             }
-            finally
+        }
+
+        public void CloseConnectionDataBase()
+        {
+            SqlConnection connection = new SqlConnection("Data Source=localhost\\SQLEXPRESS;Initial Catalog=Hero;Integrated Security=True;");
+            //SqlCommand cmd = new SqlCommand();
+            try
             {
+                connection.Close();
+                Console.WriteLine("Connexion fermée.");
+
+                Console.WriteLine("Etat : " + connection.State);
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Erreur lors de la connexion à la base de données : " + ex.Message);
                 connection.Close();
                 Console.WriteLine("Connexion fermée.");
             }

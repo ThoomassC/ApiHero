@@ -7,11 +7,13 @@ using Microsoft.EntityFrameworkCore;
 using System.Data.SqlClient;
 using ApiHero.Models;
 
-namespace Animal.Models
+namespace ApiHero.Context
 {
-    public class HeroContext : DbContext
+    public class DataContext : DbContext
     {
-        public HeroContext() { }
+        public DataContext(DbContextOptions<DataContext> options) : base(options)
+        {
+        }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -24,7 +26,9 @@ namespace Animal.Models
         }
 
         //entities
-        DbSet<Hero> Heros { get; set; }
+        public DbSet<Hero> Heros { get; set; }
+        public DbSet<Power> Powers { get; set; }
+        public DbSet<School> Schools { get; set; }
     }
 }
 
