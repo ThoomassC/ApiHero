@@ -49,7 +49,7 @@ namespace ApiHero.Controllers
 
         // PUT: api/power/{id}
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdatePower(int id, Power power)
+        public async Task<ActionResult> PutPower(int id, Power power)
         {
             if (id != power.Id)
             {

@@ -84,35 +84,5 @@ namespace ApiHero.Services
         {
             return await _context.Heros.AnyAsync(e => e.Id == id);
         }
-
-        Task<List<Hero>> IHeroService.GetHeros()
-        {
-            throw new NotImplementedException();
-        }
-
-        Task<Hero> IHeroService.GetHero(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        Task<Hero> IHeroService.PostHeroService(Hero hero)
-        {
-            throw new NotImplementedException();
-        }
-
-        Task<Hero> IHeroService.PutHeroService(int id, Hero hero)
-        {
-            throw new NotImplementedException();
-        }
-
-        Task<bool> IHeroService.DeleteHeroService(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        Task<bool> IHeroService.HeroExistsService(int id)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
